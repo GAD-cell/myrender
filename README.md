@@ -2,6 +2,8 @@
 Application permettant de faire des collections de rendus 3D (type pinterest/behance).
 
 Entités du modèle :
+    
+    
     Rendus { 
         Nom propriété : description
             Type : string
