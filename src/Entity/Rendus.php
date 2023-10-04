@@ -21,6 +21,10 @@ class Rendus
     #[ORM\OneToMany(mappedBy: 'rendus', targetEntity: Monrendu::class)]
     private Collection $monrendu;
 
+    #[ORM\ManyToOne(inversedBy: 'tags')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Membre $membre = null;
+
     public function __construct()
     {
         $this->monrendu = new ArrayCollection();
@@ -76,6 +80,18 @@ class Rendus
                 $monrendu->setRendus(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): static
+    {
+        $this->membre = $membre;
 
         return $this;
     }

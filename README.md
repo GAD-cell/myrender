@@ -8,16 +8,10 @@ Entités du modèle :
         Nom propriété : description
             Type : string
             Contraintes : notull
+        
+        Relations : ManyToOne avec Membre
+                    OneToMany avec MonRendu
     }
-
-    Album  {
-        Nom propriété : description
-            Type : string
-            Contraintes : notnull
-            Commentaire : permet de faire une album de rendus au sein de l'inventaire (ex: album de rendus en noir et blanc)
-            association de type many to many avec Mon rendu
-
-    }   
 
     Monrendu {
         Nom propriété : description
@@ -35,4 +29,17 @@ Entités du modèle :
         Nom propriété : 
             Type : string
             Contraintes : notnull        
+    }
+
+    Membre {
+        Nom propriété : description
+            Type : string
+            Contraintes : null
+
+        Nom propriété : actif_depuis
+            Type : integer
+            Contraintes : notnull
+            commentaire : année d'inscription du membre
+        
+        Relation  OneToMany avec Rendus
     }
