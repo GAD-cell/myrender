@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Monrendu;
 use App\Entity\Rendus;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -19,7 +20,8 @@ class DashboardController extends AbstractDashboardController
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(RendusCrudController::class)->generateUrl());
-
+        #return $this->redirect($adminUrlGenerator->setController(MonrenduCrudController::class)->generateUrl());
+        
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
         // if ('jane' === $this->getUser()->getUsername()) {
@@ -35,12 +37,13 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Myrender Admin');
+            ->setTitle('Gestionnaire');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Artistes', 'fas fa-list', Rendus::class);
+        yield MenuItem::linkToCrud('Rendus', 'fas fa-list', Monrendu::class);
     }
 }

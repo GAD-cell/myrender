@@ -26,6 +26,13 @@ class Rendus
         $this->monrendu = new ArrayCollection();
     }
 
+    public function __toString() 
+    {
+        $s = '';
+        $s .= $this->getId() .' '. $this->getDescription() .' ';
+        return $s;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
