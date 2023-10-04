@@ -1,5 +1,5 @@
 # myrender
-Application permettant de faire des collections de rendus 3D (type pinterest/behance).
+Application permettant de faire des collections de rendus 3D (type pinterest/behance), "Rendus" est donc l'inventaire d'un artiste, il pourra y faire des albums de rendus ou mettre directement des rendus
 
 Entités du modèle :
     
