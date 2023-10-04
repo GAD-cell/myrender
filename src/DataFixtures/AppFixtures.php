@@ -11,6 +11,8 @@ class AppFixtures extends Fixture
 {
     private const Juliette_Rendus_1 = "Juliette-Rendus-1";
     private const rendu1="rendu1";
+
+    
     private static function rendusDataGenerator()
     {
         yield [self::Juliette_Rendus_1, "Artiste 3D"];
@@ -20,10 +22,10 @@ class AppFixtures extends Fixture
     {
         yield [self::rendu1 , "rendu d'un arbre","blender","cycles",];
     }
-
-    public function load(ObjectManager $manager): void
+    
+    public function load(ObjectManager $manager)
     {
-
+        $inventoryRepo = $manager->getRepository(Rendus::class);
         foreach (self::rendusDataGenerator() as [$artisteReference,$description])
         {        
             $rendus= new Rendus();
@@ -43,7 +45,10 @@ class AppFixtures extends Fixture
             $manager->persist($monrendu);
             $manager->flush();
 
-            $this->addReference($renduReference,$description);
+            $this->addReference($renduReference,$monrendu);
         }
+        $manager->flush();
+        
     }
+    
 }
