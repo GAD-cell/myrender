@@ -1,5 +1,5 @@
 # myrender
-Application permettant de faire des collections de rendus 3D (type pinterest/behance), "Rendus" est donc l'inventaire d'un artiste, il pourra y faire des albums de rendus ou mettre directement des rendus
+Application permettant de faire des collections de rendus 3D (type pinterest/behance).
 
 Entités du modèle :
     
@@ -9,15 +9,7 @@ Entités du modèle :
             Type : string
             Contraintes : notull
     }
-
-    Album  {
-        Nom propriété : description
-            Type : string
-            Contraintes : notnull
-            Commentaire : permet de faire une album de rendus au sein de l'inventaire (ex: album de rendus en noir et blanc)
-            association de type many to many avec Mon rendu
-
-    }   
+ 
 
     Monrendu {
         Nom propriété : description
