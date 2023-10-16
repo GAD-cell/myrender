@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Rendus;
+use App\Entity\Rendu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Rendus>
+ * @extends ServiceEntityRepository<Rendu>
  *
- * @method Rendus|null find($id, $lockMode = null, $lockVersion = null)
- * @method Rendus|null findOneBy(array $criteria, array $orderBy = null)
- * @method Rendus[]    findAll()
- * @method Rendus[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Rendu|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Rendu|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Rendu[]    findAll()
+ * @method Rendu[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RendusRepository extends ServiceEntityRepository
+class RenduRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Rendus::class);
+        parent::__construct($registry, Rendu::class);
     }
 
 //    /**
-//     * @return Rendus[] Returns an array of Rendus objects
+//     * @return Rendu[] Returns an array of Rendu objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class RendusRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Rendus
+//    public function findOneBySomeField($value): ?Rendu
 //    {
 //        return $this->createQueryBuilder('r')
 //            ->andWhere('r.exampleField = :val')

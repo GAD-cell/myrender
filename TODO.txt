@@ -1,0 +1,15 @@
+Avancement du projet (étape 10 du projet):
+-Le contrôleur a été ajouté pour l'inventaire d'albums de rendus. 
+-Le twig a été configuré grâce aux gabarits afin que les albums soient affichés en tableau. 
+-Des liens sont disponibles pour chaques ID -d'albums afin de parcourir leurs contenus en objets. 
+-Le lien 'back to albums' a aussi été rajouté dans le twig "show".
+-La page admin a été configuré grâce à easyadmin.
+
+Ce qu'il reste à faire:
+Améliorations:
+	-Améliorer l'implementation des données, en rajoutant plus de caractéristiques. 
+	-Avoir la possibilité de rajouter des images pour chaque rendu afin de les visualiser.
+
+Implémentation à venir:
+-intégration d'une mise en forme CDD
+-intégration de menus

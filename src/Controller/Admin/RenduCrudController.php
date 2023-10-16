@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Monrendu;
+use App\Entity\Rendu;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class MonrenduCrudController extends AbstractCrudController
+class RenduCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Monrendu::class;
+        return Rendu::class;
     }
 
     
@@ -22,7 +22,7 @@ class MonrenduCrudController extends AbstractCrudController
             TextField::new('logiciel'),
             TextField::new('moteur_rendu'),
             TextEditorField::new('description'),
-            AssociationField::new('rendus')
+            AssociationField::new('album')
         ];
     }
     

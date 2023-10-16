@@ -2,15 +2,15 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Rendus;
+use App\Entity\Album;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 
-class RendusCrudController extends AbstractCrudController
+class AlbumCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Rendus::class;
+        return Album::class;
     }
 
     

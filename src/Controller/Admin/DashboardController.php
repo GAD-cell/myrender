@@ -2,8 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Monrendu;
-use App\Entity\Rendus;
+use App\Entity\Rendu;
+use App\Entity\Album;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -19,8 +19,7 @@ class DashboardController extends AbstractDashboardController
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(RendusCrudController::class)->generateUrl());
-        #return $this->redirect($adminUrlGenerator->setController(MonrenduCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(AlbumCrudController::class)->generateUrl());
         
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -38,12 +37,13 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Gestionnaire');
+        
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Artistes', 'fas fa-list', Rendus::class);
-        yield MenuItem::linkToCrud('Rendus', 'fas fa-list', Monrendu::class);
+        yield MenuItem::linkToCrud('Albums', 'fas fa-list', Album::class);
+        yield MenuItem::linkToCrud('Rendus', 'fas fa-list', Rendu::class);
     }
 }

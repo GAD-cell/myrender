@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RendusRepository;
+use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RendusRepository::class)]
-class Rendus
+#[ORM\Entity(repositoryClass: AlbumRepository::class)]
+class Album
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,23 +18,15 @@ class Rendus
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'rendus', targetEntity: Monrendu::class)]
-    private Collection $monrendu;
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: Rendu::class)]
+    private Collection $rendus;
 
-    #[ORM\ManyToOne(inversedBy: 'tags')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'albums')]
     private ?Membre $membre = null;
 
     public function __construct()
     {
-        $this->monrendu = new ArrayCollection();
-    }
-
-    public function __toString() 
-    {
-        $s = '';
-        $s .= $this->getId() .' '. $this->getDescription() .' ';
-        return $s;
+        $this->rendus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,29 +47,29 @@ class Rendus
     }
 
     /**
-     * @return Collection<int, Monrendu>
+     * @return Collection<int, Rendu>
      */
-    public function getMonrendu(): Collection
+    public function getRendus(): Collection
     {
-        return $this->monrendu;
+        return $this->rendus;
     }
 
-    public function addMonrendu(Monrendu $monrendu): static
+    public function addRendu(Rendu $rendu): static
     {
-        if (!$this->monrendu->contains($monrendu)) {
-            $this->monrendu->add($monrendu);
-            $monrendu->setRendus($this);
+        if (!$this->rendus->contains($rendu)) {
+            $this->rendus->add($rendu);
+            $rendu->setAlbum($this);
         }
 
         return $this;
     }
 
-    public function removeMonrendu(Monrendu $monrendu): static
+    public function removeRendu(Rendu $rendu): static
     {
-        if ($this->monrendu->removeElement($monrendu)) {
+        if ($this->rendus->removeElement($rendu)) {
             // set the owning side to null (unless already changed)
-            if ($monrendu->getRendus() === $this) {
-                $monrendu->setRendus(null);
+            if ($rendu->getAlbum() === $this) {
+                $rendu->setAlbum(null);
             }
         }
 
@@ -95,4 +87,11 @@ class Rendus
 
         return $this;
     }
+    public function __toString() 
+    {
+        $s = '';
+        $s .= $this->getId() .' '. $this->getDescription() .' ';
+        return $s;
+    }
+
 }

@@ -1,5 +1,6 @@
 # myrender
 Application permettant de faire des collections de rendus 3D (type pinterest/behance).
+La nomenclature a été un peu mal faite au début. Les entités Rendus sont des albums de Rendus 3D. Monrendu (que j'aurai dû écrire MonRendu) est l'objet des albums. Ce sont des rendus 3D.
 
 Entités du modèle :
     

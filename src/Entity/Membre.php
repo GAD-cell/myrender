@@ -15,35 +15,20 @@ class Membre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $actif_depuis = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Rendus::class)]
-    private Collection $tags;
+    #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Album::class)]
+    private Collection $albums;
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
+        $this->albums = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getActifDepuis(): ?int
-    {
-        return $this->actif_depuis;
-    }
-
-    public function setActifDepuis(int $actif_depuis): static
-    {
-        $this->actif_depuis = $actif_depuis;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -59,29 +44,29 @@ class Membre
     }
 
     /**
-     * @return Collection<int, Rendus>
+     * @return Collection<int, Album>
      */
-    public function getTags(): Collection
+    public function getAlbums(): Collection
     {
-        return $this->tags;
+        return $this->albums;
     }
 
-    public function addTag(Rendus $tag): static
+    public function addAlbum(Album $album): static
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-            $tag->setMembre($this);
+        if (!$this->albums->contains($album)) {
+            $this->albums->add($album);
+            $album->setMembre($this);
         }
 
         return $this;
     }
 
-    public function removeTag(Rendus $tag): static
+    public function removeAlbum(Album $album): static
     {
-        if ($this->tags->removeElement($tag)) {
+        if ($this->albums->removeElement($album)) {
             // set the owning side to null (unless already changed)
-            if ($tag->getMembre() === $this) {
-                $tag->setMembre(null);
+            if ($album->getMembre() === $this) {
+                $album->setMembre(null);
             }
         }
 

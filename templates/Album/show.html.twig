@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{# ... #} 
+  {% block main %}
+      <h1>Album</h1>
+
+        {% dump albums %}
+
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Logiciel</th>
+            <th>Moteur Rendu</th>
+            <th>Description</th>
+            <th>Albums</th>
+        </tr>
+      <thead>
+      <tbody>
+        {% for rendu in albums.rendus %}
+        <tr>
+          <td>{{rendu.logiciel}}</td>
+          <td>{{rendu.moteurrendu}}</td>
+          <td>{{rendu.description}}</td>
+          <td>{{albums.id}}</td>
+        </tr>
+        {% endfor %}{# rendu #}
+      <tbody>
+    </table>
+    <a href="{{ path('album') }}">back to Albums</a>
+
+  {% endblock %} {# body #} 
+{# ... #} 
+

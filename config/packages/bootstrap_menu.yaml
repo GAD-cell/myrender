@@ -1,0 +1,11 @@
+bootstrap_menu:
+  menus:
+    main:
+      items:
+        admin:
+          label: 'Admin'
+          route: 'admin'
+        albums:
+          label: 'Albums'
+          route: 'album'
+     
