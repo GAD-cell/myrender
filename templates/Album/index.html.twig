@@ -20,7 +20,10 @@
         <tr>
             <td>{{album.id}}</td>
             <td>{{album.description}}</td>
-            <td><a href="{{ path('album_show', {'id': album.id}) }}">show</a></td>
+            <td>
+                <a href="{{ path('album_show', {'id': album.id}) }}">show</a>
+                <a href="{{ path('edit_album', {'id': album.id}) }}">edit</a>
+            </td>
         </tr>
         {% endfor %}{# rendus #}
 

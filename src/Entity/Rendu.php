@@ -77,4 +77,11 @@ class Rendu
 
         return $this;
     }
+
+    public function __toString() 
+    {
+        $s = '';
+        $s .= $this->getId() .' '. $this->getDescription() .' ';
+        return $s;
+    }
 }

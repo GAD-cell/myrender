@@ -13,6 +13,7 @@ class AlbumType extends AbstractType
     {
         $builder
             ->add('description')
+            ->add('rendus');
         ;
     }
 
