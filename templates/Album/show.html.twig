@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{# ... #} 
   {% block main %}
       <h1>Album</h1>
+      <h1>{{albums.description}}</h1>
 
         {% dump albums %}
 
@@ -12,7 +12,6 @@
             <th>Logiciel</th>
             <th>Moteur Rendu</th>
             <th>Description</th>
-            <th>Albums</th>
         </tr>
       <thead>
       <tbody>
@@ -21,13 +20,12 @@
           <td>{{rendu.logiciel}}</td>
           <td>{{rendu.moteurrendu}}</td>
           <td>{{rendu.description}}</td>
-          <td>{{albums.id}}</td>
         </tr>
         {% endfor %}{# rendu #}
       <tbody>
     </table>
     <a href="{{ path('album') }}">back to Albums</a>
 
-  {% endblock %} {# body #} 
+  {% endblock %} {# main#} 
 {# ... #} 
 

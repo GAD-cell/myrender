@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RenduRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RenduRepository::class)]
@@ -24,6 +26,14 @@ class Rendu
 
     #[ORM\ManyToOne(inversedBy: 'rendus')]
     private ?Album $album = null;
+
+    #[ORM\ManyToMany(targetEntity: ArtBoard::class, mappedBy: 'rendus')]
+    private Collection $artboards;
+
+    public function __construct()
+    {
+        $this->artboards = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -83,5 +93,32 @@ class Rendu
         $s = '';
         $s .= $this->getId() .' '. $this->getDescription() .' ';
         return $s;
+    }
+
+    /**
+     * @return Collection<int, ArtBoard>
+     */
+    public function getArtboards(): Collection
+    {
+        return $this->artboards;
+    }
+
+    public function addArtboard(ArtBoard $artboard): static
+    {
+        if (!$this->artboards->contains($artboard)) {
+            $this->artboards->add($artboard);
+            $artboard->addRendu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtboard(ArtBoard $artboard): static
+    {
+        if ($this->artboards->removeElement($artboard)) {
+            $artboard->removeRendu($this);
+        }
+
+        return $this;
     }
 }

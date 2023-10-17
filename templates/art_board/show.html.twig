@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ArtBoard{% endblock %}
+
+{% block body %}
+    <h1>ArtBoard</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ art_board.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ art_board.description }}</td>
+            </tr>
+            <tr>
+                <th>Publiee</th>
+                <td>{{ art_board.publiee ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_art_board_index') }}">back to list</a>
+
+    <a href="{{ path('app_art_board_edit', {'id': art_board.id}) }}">edit</a>
+
+    {{ include('art_board/_delete_form.html.twig') }}
+{% endblock %}

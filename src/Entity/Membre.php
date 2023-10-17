@@ -21,9 +21,13 @@ class Membre
     #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Album::class)]
     private Collection $albums;
 
+    #[ORM\OneToMany(mappedBy: 'createur', targetEntity: ArtBoard::class, orphanRemoval: true)]
+    private Collection $artboards;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
+        $this->artboards = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,4 +76,42 @@ class Membre
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, ArtBoard>
+     */
+    public function getArtboards(): Collection
+    {
+        return $this->artboards;
+    }
+
+    public function addArtboard(ArtBoard $artboard): static
+    {
+        if (!$this->artboards->contains($artboard)) {
+            $this->artboards->add($artboard);
+            $artboard->setCreateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtboard(ArtBoard $artboard): static
+    {
+        if ($this->artboards->removeElement($artboard)) {
+            // set the owning side to null (unless already changed)
+            if ($artboard->getCreateur() === $this) {
+                $artboard->setCreateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() 
+    {
+        $s = '';
+        $s .= $this->getId() .' '. $this->getDescription() .' ';
+        return $s;
+    }
+
 }
